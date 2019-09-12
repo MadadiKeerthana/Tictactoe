@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class run{
 	//Panel saves buttons, and other stuff
-	static JFrame frame = new JFrame("Tic Tac Toe");
+	static JFrame frame;
 	JPanel panel = new JPanel();
 
 	static //create objects of buttons and x and o
@@ -14,6 +14,7 @@ public class run{
 	static //true = x, false = o
 	boolean value = true;
 	
+	//if pop up window values
 	static int replaying;
 
 	public static void main(String args[]) {
@@ -27,6 +28,7 @@ public class run{
 
 		// creating the dimensions of the frame
 		
+		frame = new JFrame("Tic Tac Toe");
 		
 		frame.setSize(400,400);
 		frame.setResizable(false);
@@ -59,7 +61,8 @@ public class run{
 	public static void setValue(boolean val) {
 		value = val;
 	}
-	//function to replay the game once game is over
+	
+	//DRAW, when all buttons are full with no winners
 	public static boolean draw()  {
 		
 		for( int i = 0; i < 9; i++) {
@@ -73,7 +76,7 @@ public class run{
 	}
 	
 
-	
+	//pop up window that shows the winner and gives replay or close options
 	public static void popUpwindow(int winner) {
 		
 		String winnerStatement = "";
@@ -86,21 +89,24 @@ public class run{
 		//0 - yes, 1 - no
 		replaying = JOptionPane.showConfirmDialog(null, winnerStatement, "THE END", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		
-		//System.out.print(replay);
 		
+		//if yes, then replay. if no, then close the game.
 		if(replaying == 0) {
 			replay();
 		}
 		else {
-			frame.dispose();
+			frame.setVisible(false);
 		}
+		
 	}
 	
+	//function to replay the game once game is over
 	private static void replay() {
 		// TODO Auto-generated method stub
 		new run();
 	}
 
+	//looking for patterns to win
 	public static void threeMatch() {
 		/*
 		 * 0 1 2
@@ -110,20 +116,17 @@ public class run{
 		//in row 1, 2, 3 
 	
 		if(button[0].turn != 0 && button[0].turn == button[1].turn && button[1].turn == button[2].turn) {
-			//System.out.print(button[0].turn + " wins");
 			
 			popUpwindow(button[0].turn);
 			
 		}
 		else if(button[3].turn != 0 && button[3].turn == button[4].turn && button[4].turn == button[5].turn) {
-			//System.out.print(button[3].turn + " wins");
-			
+
 			popUpwindow(button[3].turn);
 			
 		}
 		else if(button[6].turn != 0 && button[6].turn == button[7].turn && button[7].turn == button[8].turn) {
-			//System.out.print(button[6].turn + " wins");
-			
+		
 			popUpwindow(button[6].turn);
 		}
 		
@@ -131,36 +134,31 @@ public class run{
 		
 		//in column 1, 2, 3
 		else if(button[0].turn != 0 && button[0].turn == button[3].turn && button[3].turn == button[6].turn) {
-			//System.out.print(button[0].turn + " wins");
 			
 			popUpwindow(button[0].turn);
 		}
 		else if(button[1].turn != 0 && button[1].turn == button[4].turn && button[4].turn == button[7].turn) {
-			//System.out.print(button[1].turn + " wins");
 			
 			popUpwindow(button[1].turn);
 		}
 		else if(button[2].turn != 0 && button[2].turn == button[5].turn && button[5].turn == button[8].turn) {
-			//System.out.print(button[2].turn + " wins");
 			
 			popUpwindow(button[2].turn);
 		}
 		
 		//two diagonals 
 		else if(button[0].turn != 0 && button[0].turn == button[4].turn && button[4].turn == button[8].turn) {
-			//System.out.print(button[0].turn + " wins");
 			
 			popUpwindow(button[0].turn);
 		}
 		else if(button[2].turn != 0 && button[2].turn == button[4].turn && button[4].turn == button[6].turn) {
-			//System.out.print(button[2].turn + " wins");
 			
 			popUpwindow(button[2].turn);
 		}
 		else if(draw()) {
 			
 			popUpwindow(0);
-			replay();
+			
 		}
 		
 		

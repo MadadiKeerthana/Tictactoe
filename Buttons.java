@@ -3,6 +3,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+//class with individual square to press X or O
 public class Buttons extends JButton implements ActionListener{
 
 	//imageicon creates images and holds the dimensions of the image
@@ -15,7 +16,7 @@ public class Buttons extends JButton implements ActionListener{
 	//constructor
 	public Buttons() {
 		//initiate Image icon
-		//get images by going to class's direcotry and getting the resource named x and o
+		//get images by going to class's directory and getting the resource named x and o
 		X = new ImageIcon(this.getClass().getResource("images/x.png"));
 		O = new ImageIcon(this.getClass().getResource("images/o.png"));
 
