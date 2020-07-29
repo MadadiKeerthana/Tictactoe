@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.*;
 
 
@@ -18,7 +19,10 @@ public class Buttons extends JButton implements ActionListener{
 		//initiate Image icon
 		//get images by going to class's directory and getting the resource named x and o
 		X = new ImageIcon(this.getClass().getResource("images/x.png"));
+		X = new ImageIcon(X.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH));
 		O = new ImageIcon(this.getClass().getResource("images/o.png"));
+		O = new ImageIcon(O.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH));
+
 
 		//add actionlistener to the button
 		addActionListener(this);
